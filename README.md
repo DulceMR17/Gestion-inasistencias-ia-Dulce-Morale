@@ -1,0 +1,1 @@
+# Sistema Inteligente de Gestión de Justificación de Inasistencias
