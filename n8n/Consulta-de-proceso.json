@@ -1,0 +1,126 @@
+{
+  "name": "Consulta-de-proceso",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "45a79c48-d0f8-4c94-a5a6-e2fac2edf5d2",
+      "name": "Telegram Trigger",
+      "webhookId": "ab332774-fede-41df-80b0-d6305c6b7a49",
+      "credentials": {
+        "telegramApi": {
+          "id": "fANP3cMPeyQIdOiq",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1RpNhjnyrLDHAgJ9rrZSdVUHtMsfHHPVwKQBQ2wF5GWw",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1RpNhjnyrLDHAgJ9rrZSdVUHtMsfHHPVwKQBQ2wF5GWw/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "ID Solicitud",
+              "lookupValue": "={{ $json.message.text }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        208,
+        0
+      ],
+      "id": "3229c21e-0b58-4dea-8f62-c3f760a0231d",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U6Gk5lSaP9QHl5B5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "8789483907",
+        "text": "=¡Hola! El estado de tu solicitud de inasistencia es el siguiente:\n{{ $json['Nombre Estudiante'] }}\n📋 ID Solicitud: {{ $json['ID Solicitud'] }}\n📝 Tipo de Justificación: {{ $json['Tipo de Justificación'] }}\n🔍 Resultado del Análisis: {{ $json['Resultado Análisis'] }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "a8366393-1bef-484b-adea-9a3f2abcca4d",
+      "name": "Send a text message",
+      "webhookId": "9083ebb9-bb14-4a4f-a736-44e8f62a72e1",
+      "credentials": {
+        "telegramApi": {
+          "id": "fANP3cMPeyQIdOiq",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "4b55f5ab-5d84-4f6a-b460-ae27ac4b7cd7",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "5a1b3811f2f3f53d9fde83acc48321f64051f7ca3c484f223ab0739e4ad3db48"
+  },
+  "id": "MxrGOdnj0ELMT81K",
+  "tags": []
+}

@@ -1,0 +1,1074 @@
+{
+  "name": "Gestión de Justificaciones de Inasistencias",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "justificacion-inasistencia",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -1104,
+        112
+      ],
+      "id": "280d0d11-1b8d-451e-ae97-857b23e41c30",
+      "name": "Webhook",
+      "webhookId": "0e0db6af-ba64-4d04-91ab-e057c2e017fa"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1RpNhjnyrLDHAgJ9rrZSdVUHtMsfHHPVwKQBQ2wF5GWw",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1RpNhjnyrLDHAgJ9rrZSdVUHtMsfHHPVwKQBQ2wF5GWw/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Correo": "={{ $('Webhook').item.json.body.correo }}",
+            "ID Estudiante": "={{ $('Webhook').item.json.body.estudianteId }}",
+            "Tipo de Justificación": "={{ $('Webhook').item.json.body.motivo }}",
+            "Nombre Estudiante": "={{ $('Webhook').item.json.body.nombre }}",
+            "Resultado Análisis": "=Aprobado\n{{ $('Code in JavaScript').item.json.analisis }}",
+            "URL Soporte": "={{ $json.webViewLink }}",
+            "Nivel de confinaza": "={{ $json.clasificacion }}",
+            "Fecha Resgistro": "={{ $now.format('dd/MM/yyyy HH:mm') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "ID Solicitud",
+              "displayName": "ID Solicitud",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Fecha Resgistro",
+              "displayName": "Fecha Resgistro",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Nombre Estudiante",
+              "displayName": "Nombre Estudiante",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ID Estudiante",
+              "displayName": "ID Estudiante",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Correo",
+              "displayName": "Correo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Tipo de Justificación",
+              "displayName": "Tipo de Justificación",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "URL Soporte",
+              "displayName": "URL Soporte",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Resultado Análisis",
+              "displayName": "Resultado Análisis",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Nivel de confinaza",
+              "displayName": "Nivel de confinaza",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "headers",
+              "displayName": "headers",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "params",
+              "displayName": "params",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "query",
+              "displayName": "query",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "body",
+              "displayName": "body",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "webhookUrl",
+              "displayName": "webhookUrl",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "executionMode",
+              "displayName": "executionMode",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        128,
+        -48
+      ],
+      "id": "d74220b6-abe0-4003-92e1-cda253b10780",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U6Gk5lSaP9QHl5B5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "Actúa como un validador automático de justificaciones e inasistencias en un contexto educativo. Analiza la imagen adjunta que se encuentra en la propiedad binaria 'soporte'.\n\nTu tarea es:\n1. Extraer el texto principal del documento.\n2. Clasificar la solicitud estrictamente en una de estas tres categorías: 'Válida', 'Inválida' o 'Dudosa'.\n3. Asignar un nivel de confianza entre 0.00 y 1.00 basándote en la legibilidad y coherencia del documento.\n\nDebes responder ÚNICAMENTE con un objeto JSON válido, sin textos introductorios ni bloques de código de marcado (no uses ```json ni cierres con ```). Usa exactamente este formato:\n\n{\n  \"analisis\": \"Breve resumen de lo que dice el documento y por qué se toma la decisión\",\n  \"clasificacion\": \"Válida / Inválida / Dudosa\",\n  \"confianza\": 0.95\n}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "type": "HumanMessagePromptTemplate",
+              "messageType": "imageBinary",
+              "binaryImageDataKey": "soporte"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        -768,
+        112
+      ],
+      "id": "b56f4b1c-8830-43a7-8baa-b411b7688cb9",
+      "name": "Basic LLM Chain",
+      "retryOnFail": true,
+      "waitBetweenTries": 2000
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-3.5-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        -880,
+        336
+      ],
+      "id": "96e44448-2a46-4af4-8c66-6c93ac49dc68",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "7wrdxhF4Q3x2hPtz",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// 1. Capturamos la respuesta de la IA (soportando tanto .output como .text)\nlet textoIA = $input.item.json.text || $input.item.json.output || \"\";\n\n// 2. Si es un objeto directo, lo manejamos limpiamente\nif (typeof textoIA === 'object') {\n  return {\n    analisis: textoIA.analisis || \"Sin análisis\",\n    clasificacion: textoIA.clasificacion || \"Dudosa\",\n    confianza: parseFloat(textoIA.confianza || 0)\n  };\n}\n\n// 3. Limpieza profunda de saltos de línea, espacios y bloques de código markdown (```json)\ntextoIA = textoIA.trim();\ntextoIA = textoIA.replace(/^```json\\s*/i, \"\").replace(/```$/, \"\").trim();\n\n// 4. Si después de limpiar quedó vacío, devolvemos un estado seguro\nif (!textoIA) {\n  return {\n    analisis: \"El nodo de la IA no generó texto procesable.\",\n    clasificacion: \"Dudosa\",\n    confianza: 0.0\n  };\n}\n\n// 5. Parseo seguro a JSON\ntry {\n  let datosParseados = JSON.parse(textoIA);\n  return {\n    analisis: datosParseados.analisis || \"Sin detalles\",\n    clasificacion: datosParseados.clasificacion || \"Dudosa\",\n    confianza: parseFloat(datosParseados.confianza || 0)\n  };\n} catch (e) {\n  // Si la IA metió texto plano decorativo alrededor del JSON, intentamos extraerlo\n  try {\n    let inicioJSON = textoIA.indexOf('{');\n    let finJSON = textoIA.lastIndexOf('}');\n    if (inicioJSON !== -1 && finJSON !== -1) {\n      let jsonLimpio = textoIA.substring(inicioJSON, finJSON + 1);\n      let datosParseadosMano = JSON.parse(jsonLimpio);\n      return {\n        analisis: datosParseadosMano.analisis || \"Sin detalles\",\n        clasificacion: datosParseadosMano.clasificacion || \"Dudosa\",\n        confianza: parseFloat(datosParseadosMano.confianza || 0)\n      };\n    }\n  } catch (err) {}\n\n  // Si de plano no es un JSON válido en absoluto\n  return {\n    analisis: \"Error de formato en la respuesta de la IA: \" + textoIA,\n    clasificacion: \"Dudosa\",\n    confianza: 0.0\n  };\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -464,
+        144
+      ],
+      "id": "ae0c84f5-480e-46fa-ae93-78450868ae31",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1RpNhjnyrLDHAgJ9rrZSdVUHtMsfHHPVwKQBQ2wF5GWw",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1RpNhjnyrLDHAgJ9rrZSdVUHtMsfHHPVwKQBQ2wF5GWw/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Correo": "={{ $('Webhook').item.json.body.correo }}",
+            "ID Estudiante": "={{ $('Webhook').item.json.body.estudianteId }}",
+            "Tipo de Justificación": "={{ $('Webhook').item.json.body.motivo }}",
+            "Nombre Estudiante": "={{ $('Webhook').item.json.body.nombre }}",
+            "Resultado Análisis": "=En revision\n{{ $('Code in JavaScript').item.json.analisis }}",
+            "ID Solicitud": "={{ Math.floor(1000 + Math.random() * 9000) }}",
+            "Fecha Resgistro": "={{ $now.format('dd/MM/yyyy HH:mm') }}",
+            "Nivel de confinaza": "={{ $('Code in JavaScript').item.json.confianza }}",
+            "URL Soporte": "={{ $json.soporte.fileName}}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "ID Solicitud",
+              "displayName": "ID Solicitud",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Fecha Resgistro",
+              "displayName": "Fecha Resgistro",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Nombre Estudiante",
+              "displayName": "Nombre Estudiante",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ID Estudiante",
+              "displayName": "ID Estudiante",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Correo",
+              "displayName": "Correo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Tipo de Justificación",
+              "displayName": "Tipo de Justificación",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "URL Soporte",
+              "displayName": "URL Soporte",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Resultado Análisis",
+              "displayName": "Resultado Análisis",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Nivel de confinaza",
+              "displayName": "Nivel de confinaza",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "headers",
+              "displayName": "headers",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "params",
+              "displayName": "params",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "query",
+              "displayName": "query",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "body",
+              "displayName": "body",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "webhookUrl",
+              "displayName": "webhookUrl",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "executionMode",
+              "displayName": "executionMode",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        128,
+        128
+      ],
+      "id": "e387a9e1-78af-4439-aed0-93d50f90f1c5",
+      "name": "Append row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U6Gk5lSaP9QHl5B5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "8789483907",
+        "text": "=✅ *Justificación Aprobada Automáticamente*  *Estudiante:* {{ $('Webhook').item.json.body.nombre }} *Motivo:* {{ $('Webhook').item.json.body.motivo }} *Confianza de IA:* {{ $('Code in JavaScript').item.json.confianza * 100 }}%  *Análisis:* {{ $('Code in JavaScript').item.json.analisis }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        320,
+        -48
+      ],
+      "id": "65b5b3e5-4b9a-4e70-ab89-c697fd6fff9a",
+      "name": "Send a text message",
+      "webhookId": "324fd521-bb2d-4845-b6cb-4496279a842c",
+      "credentials": {
+        "telegramApi": {
+          "id": "fANP3cMPeyQIdOiq",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "8789483907",
+        "text": "=✅ *Justificación Dudosa esta en Revision*  *Estudiante:* {{ $('Webhook').item.json.body.nombre }} *Motivo:* {{ $('Webhook').item.json.body.motivo }} *Confianza de IA:* {{ $('Code in JavaScript').item.json.confianza * 100 }}%  *Análisis:* {{ $('Code in JavaScript').item.json.analisis }} ⏳  tu solicitud de justificación ha sido registrada en el sistema. Debido a que el soporte adjunto requiere una validación visual detallada, tu caso ha sido derivado a una revisión manual por el equipo administrativo.\n\n📋 *Tu ID de Seguimiento:* `{{ Math.floor(1000 + Math.random() * 9000) }}`\n\nPuedes usar este ID en nuestro bot de consultas para verificar el estado de tu trámite más adelante. Te notificaremos en cuanto cambie tu estatus.",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        352,
+        128
+      ],
+      "id": "8691da4c-03e0-4a80-8b4a-fe09d3ad3275",
+      "name": "Send a text message1",
+      "webhookId": "324fd521-bb2d-4845-b6cb-4496279a842c",
+      "credentials": {
+        "telegramApi": {
+          "id": "fANP3cMPeyQIdOiq",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.clasificacion }}",
+                    "rightValue": "Válida",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "a0c1fe4f-f288-46d3-a5d2-aa54ae3fe2b8"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "8b49972a-dbc9-42b2-8972-7ef78f54385b",
+                    "leftValue": "={{ $json.clasificacion }}",
+                    "rightValue": "Dudosa",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "6c370e91-3232-4176-9b9d-881042365676",
+                    "leftValue": "={{ $json.clasificacion }}",
+                    "rightValue": "Inválida",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        -272,
+        144
+      ],
+      "id": "dcfe796c-d4ae-43c5-8167-67399a0aaf5d",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1RpNhjnyrLDHAgJ9rrZSdVUHtMsfHHPVwKQBQ2wF5GWw",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1RpNhjnyrLDHAgJ9rrZSdVUHtMsfHHPVwKQBQ2wF5GWw/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Correo": "={{ $('Webhook').item.json.body.correo }}",
+            "ID Estudiante": "={{ $('Webhook').item.json.body.estudianteId }}",
+            "Tipo de Justificación": "={{ $('Webhook').item.json.body.motivo }}",
+            "Nombre Estudiante": "={{ $('Webhook').item.json.body.nombre }}",
+            "Resultado Análisis": "=En revision\n{{ $('Code in JavaScript').item.json.analisis }}",
+            "Fecha Resgistro": "={{ $now.format('dd/MM/yyyy HH:mm') }}",
+            "ID Solicitud": "={{ $execution.id }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "ID Solicitud",
+              "displayName": "ID Solicitud",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Fecha Resgistro",
+              "displayName": "Fecha Resgistro",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Nombre Estudiante",
+              "displayName": "Nombre Estudiante",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ID Estudiante",
+              "displayName": "ID Estudiante",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Correo",
+              "displayName": "Correo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Tipo de Justificación",
+              "displayName": "Tipo de Justificación",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "URL Soporte",
+              "displayName": "URL Soporte",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Resultado Análisis",
+              "displayName": "Resultado Análisis",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Nivel de confinaza",
+              "displayName": "Nivel de confinaza",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "headers",
+              "displayName": "headers",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "params",
+              "displayName": "params",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "query",
+              "displayName": "query",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "body",
+              "displayName": "body",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "webhookUrl",
+              "displayName": "webhookUrl",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "executionMode",
+              "displayName": "executionMode",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        128,
+        304
+      ],
+      "id": "831a59cf-de6d-46ea-bf04-e0e7ad0c37bc",
+      "name": "Append row in sheet2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "U6Gk5lSaP9QHl5B5",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "8789483907",
+        "text": "=✅ *Justificación Invalida*  *Estudiante:* {{ $('Webhook').item.json.body.nombre }} *Motivo:* {{ $('Webhook').item.json.body.motivo }} *Confianza de IA:* {{ $('Code in JavaScript').item.json.confianza * 100 }}%  *Análisis:* {{ $('Code in JavaScript').item.json.analisis }} favor de comunicarase a coordinacion de manera directa o personalmente si así es de suma importancia",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        352,
+        304
+      ],
+      "id": "c53e4c86-ac5d-480a-a67e-dc1a26a341b0",
+      "name": "Send a text message2",
+      "webhookId": "324fd521-bb2d-4845-b6cb-4496279a842c",
+      "credentials": {
+        "telegramApi": {
+          "id": "fANP3cMPeyQIdOiq",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "inputDataFieldName": "={{ $node[\"Webhook\"].binary.soporte }}",
+        "name": "{{ $json.headers['content-type'].includes('multipart') ? 'justificante_' + Math.floor(1000 + Math.random() * 9000) + '.png' : 'soporte.png' }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1OWP2YY2DTXgrfr0E-AXVo6jrFX6dj5lx"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -96,
+        -32
+      ],
+      "id": "2bd42afd-c843-4bee-ad1c-7b4af1140ad1",
+      "name": "Upload file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "6tvukpKumx0FXVFK",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "inputDataFieldName": "={{ $node[\"Webhook\"].binary.soporte }}",
+        "name": "{{ $json.headers['content-type'].includes('multipart') ? 'justificante_' + Math.floor(1000 + Math.random() * 9000) + '.png' : 'soporte.png' }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1OWP2YY2DTXgrfr0E-AXVo6jrFX6dj5lx"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -32,
+        128
+      ],
+      "id": "97c2566c-29f7-44d3-8b42-60cfc9758e69",
+      "name": "Upload file1",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "6tvukpKumx0FXVFK",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "inputDataFieldName": "={{ $node[\"Webhook\"].binary.soporte }}",
+        "name": "{{ $json.headers['content-type'].includes('multipart') ? 'justificante_' + Math.floor(1000 + Math.random() * 9000) + '.png' : 'soporte.png' }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "1OWP2YY2DTXgrfr0E-AXVo6jrFX6dj5lx"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        -48,
+        304
+      ],
+      "id": "87bfb35e-9baa-4941-b0fb-7f7e15a61233",
+      "name": "Upload file2",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "6tvukpKumx0FXVFK",
+          "name": "Google Drive account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet1": {
+      "main": [
+        [
+          {
+            "node": "Send a text message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Upload file",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Upload file1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Upload file2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet2": {
+      "main": [
+        [
+          {
+            "node": "Send a text message2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload file": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload file1": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload file2": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "77faa509-4520-491c-9da9-5f3eddc4c378",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "5a1b3811f2f3f53d9fde83acc48321f64051f7ca3c484f223ab0739e4ad3db48"
+  },
+  "id": "oIYboPEoDwYPy1Jx",
+  "tags": []
+}
